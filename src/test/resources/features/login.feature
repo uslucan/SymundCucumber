@@ -10,6 +10,11 @@ Feature: Login feature
     When the user enters valid credentials
     Then user should be able to login
 
+  @SYMU-1043
+  Scenario: user login with valid credentials (hitting enter on keyboard)
+    When the user enters valid credentials and hit the enter on keyboard
+    Then user should be able to login
+
   @SYMU-1038
   Scenario Outline: user can not login with any invalid credentials
     When When the user enters invalid credentials "<username>" and "<password>"

@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 public class LoginStepDefs {
     Login loginPage = new Login();
@@ -23,6 +24,13 @@ public class LoginStepDefs {
         loginPage.passwordInputBox.sendKeys(ConfigurationReader.get("password"));
         loginPage.loginBtn.click();
     }
+
+    @When("the user enters valid credentials and hit the enter on keyboard")
+    public void the_user_enters_valid_credentials_and_hit_the_enter_on_keyboard() {
+        loginPage.usernameInputBox.sendKeys(ConfigurationReader.get("username"));
+        loginPage.passwordInputBox.sendKeys(ConfigurationReader.get("password") + Keys.ENTER);
+    }
+
 
     @Then("user should be able to login")
     public void user_should_be_able_to_login() {
