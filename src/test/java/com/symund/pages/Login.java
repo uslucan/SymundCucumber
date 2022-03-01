@@ -8,8 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import java.nio.file.WatchEvent;
 
 public class Login {
-   public Login(){
-        PageFactory.initElements(Driver.get(),this);
+    public Login() {
+        PageFactory.initElements(Driver.get(), this);
     }
 
     @FindBy(css = "#user")
@@ -34,8 +34,8 @@ public class Login {
     public WebElement resetPassword;
 
 
-    public String getMsg(WebElement box){
-     return box.getAttribute("validationMessage");
+    public String getMsg(WebElement box) {
+        return box.getAttribute("validationMessage");
     }
 
 }

@@ -8,21 +8,19 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 public class LoginStepDefs {
     Login loginPage = new Login();
 
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-        Driver.get().get(ConfigurationReader.get("url"));
-    }
 
-    @When("the user enters valid credentials")
+    @When("the user login with valid credentials")
     public void the_user_enters_valid_credentials() {
         loginPage.usernameInputBox.sendKeys(ConfigurationReader.get("username"));
         loginPage.passwordInputBox.sendKeys(ConfigurationReader.get("password"));
         loginPage.loginBtn.click();
+
     }
 
     @When("the user enters valid credentials and hit the enter on keyboard")
@@ -88,14 +86,13 @@ public class LoginStepDefs {
 
     @Then("password should be seen explicitly")
     public void password_should_be_seen_explicitly() {
-
         Assert.assertEquals(loginPage.usernameInputBox.getAttribute("type"), "text");
     }
 
     @Given("user should be able to see {string} link on login page")
     public void user_should_be_able_to_see_link_on_login_page(String expected) {
         String actual = loginPage.forgotPassword.getText();
-        Assert.assertEquals(actual,expected);
+        Assert.assertEquals(actual, expected);
     }
 
     @When("user clicks on forget password link")
@@ -107,7 +104,7 @@ public class LoginStepDefs {
     @Then("user should be able to see {string} button")
     public void user_should_be_able_to_see_button(String expected) {
         String actual = loginPage.resetPassword.getAttribute("value");
-        Assert.assertEquals(actual,expected);
+        Assert.assertEquals(actual, expected);
 
     }
 

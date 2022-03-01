@@ -3,12 +3,9 @@ Feature: Login feature
 
   Agile story : As a user, I should be able to login.
 
-  Background:
-    Given the user is on the login page
-
   @SYMU-1037
   Scenario: user login with valid credentials
-    When the user enters valid credentials
+    When the user login with valid credentials
     Then user should be able to login
 
   @SYMU-1043
@@ -48,6 +45,8 @@ Feature: Login feature
     And user should be able to see "Forgot password?" link on login page
     When user clicks on forget password link
     Then user should be able to see "Reset password" button
+
+
 
 
 
