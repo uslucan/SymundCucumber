@@ -7,6 +7,6 @@ public class FilesPage_Melek extends BasePage{
     @FindBy(xpath = "//a[@class='button new']")
     public WebElement plusIcon;
 
-    @FindBy(xpath = "//span[@class='displayname']")
+    @FindBy(xpath = "//label[@data-action='upload']")    //span[@class='displayname']
     public  WebElement uploadLink;
 }
