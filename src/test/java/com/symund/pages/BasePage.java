@@ -43,6 +43,8 @@ public abstract class BasePage {
     public WebElement searchFile;
     @FindBy(xpath = "//ul[@*='Files']//a//h3")
     public WebElement FileSearchResult;
+    @FindBy(id = "unified-search")
+    public WebElement magnifyIcon;
 
 
     //---------------------------------------------------
