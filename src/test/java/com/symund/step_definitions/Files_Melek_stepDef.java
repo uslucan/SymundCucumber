@@ -3,8 +3,10 @@ package com.symund.step_definitions;
 import com.symund.pages.FilesPage_Melek;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
@@ -19,31 +21,21 @@ public class Files_Melek_stepDef {
 
     @Then("user can upload file")
     public void user_can_upload_file() {
-
         String projectPath= System.getProperty("user.dir");
         System.out.println("projectPath = " + projectPath);
-        String filePath="src\\test\\resources\\Sprint4_ Sample Folder";
+        String filePath="src\\test\\resources\\Sprint4_SampleFile.txt";
         String fullPath= projectPath+"\\"+ filePath;
         System.out.println("fullPath = " + fullPath);
 
-//
-//        ((JavascriptExecutor)Driver.get()).executeScript(
-//                "HTMLInputElement.prototype.click = function() {                     " +
-//                        "  if(this.type !== 'file') HTMLElement.prototype.click.call(this);  " +
-//                        "};                                                                  " );
-//
-//// trigger the upload
-//       page.uploadLink.click();
-//
-//// assign the file to the `<input>`
-//        Driver.get().findElement(By.cssSelector("input[type=file]"))
-//                .sendKeys(fullPath);
-//        BrowserUtils.waitFor(5);
-//
-//    //    page.uploadLink.sendKeys(fullPath);
-//        BrowserUtils.waitFor(7);
+        page.uploadFile.sendKeys(fullPath);
+        BrowserUtils.waitFor(3);
+    }
 
-
+    @Then("user can see {string} in the file list")
+    public void userCanSeeInTheFileList(String expectedFileName) {
+        System.out.println(page.getFileName(expectedFileName));
+//        System.out.println("actualFileName = " + actualFileName);
+//        Assert.assertEquals(expectedFileName,actualFileName);
     }
 
     @When("user click New folder input box")
@@ -60,5 +52,13 @@ public class Files_Melek_stepDef {
     public void user_can_see_new_created_folder_in_file_list() {
 
     }
+
+
+
+
+    @And("user write the folder name as SampleFolder{int} and click confirm icon")
+    public void userWriteTheFolderNameAsSampleFolderAndClickConfirmIcon(int arg0) {
+    }
+
 
 }
