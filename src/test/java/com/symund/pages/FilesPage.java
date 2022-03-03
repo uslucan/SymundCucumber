@@ -8,12 +8,12 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class FilesPage_Melek extends BasePage{
+public class FilesPage extends BasePage{
     @FindBy(xpath = "//a[@class='button new']")
     public WebElement plusIcon;
 
-    @FindBy(xpath = "//span[@class='displayname']")
-    public  WebElement uploadLink;
+    @FindBy(partialLinkText = "New folder")
+    public  WebElement newFolder;
 
     @FindBy(partialLinkText = "Name")
     public WebElement NameBtn;
@@ -32,11 +32,18 @@ public class FilesPage_Melek extends BasePage{
 
     @FindBy(css = ".modified.live-relative-timestamp")
     public List<WebElement> modifiedList;
+
     @FindBy(xpath = "//input[@type='file']")
     public  WebElement uploadFile;
 
     @FindBy(xpath = "//tbody/tr")
     public List<WebElement> listOfFiles;
+
+    @FindBy(xpath = "//form[@class='filenameform']/input[@type='text']")
+    public  WebElement newFolderInputBox;
+
+    @FindBy(xpath = "//input[@class='icon-confirm']") //form[@class='filenameform']/input[@type='submit']
+    public WebElement confirmArrow;
 
 
     public String getFileName(String expectedFileName) {  //  Sprint4_SampleFile.txt
