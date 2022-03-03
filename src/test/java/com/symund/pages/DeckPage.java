@@ -1,5 +1,6 @@
 package com.symund.pages;
 
+import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,12 @@ public class DeckPage extends BasePage{
     @FindBy(css = "div.board-title>h2")
     public WebElement boardTitle;
 
+    @FindBy(xpath = "//div[@class='stack__card-add']//input[@class='icon-confirm']")
+    public WebElement addCardArrowButton;
+
+    @FindBy(css = "div.card-upper>h3")
+    public List<WebElement> listOfCards;
+
 
     public void enterName(String name, String inputBoxName){
         String inputBoxLocator = "//input[@placeholder='"+inputBoxName+"']";
@@ -44,6 +51,25 @@ public class DeckPage extends BasePage{
         Driver.get().findElement(By.xpath(locator)).click();
     }
 
+    public WebElement getAddCardButton(String listName){
+        String locator  = "//h3[contains(.,'"+listName+"')]/following-sibling::button";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+    public WebElement getThreeDotsButton(String cardName){
+        String locator = "//h3[.='"+cardName+"']/../following-sibling::*//button";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+    public WebElement getCardOptionsUnderThreeDots(String option){
+        String locator = "//span[.='"+option+"']";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+    public boolean isUserAssignedToTask(String taskName){
+        String locator = "//h3[.='"+taskName+"']/../following-sibling::*//div[@class='avatardiv popovermenu-wrapper has-tooltip']";
+        return Driver.get().findElement(By.xpath(locator)).isDisplayed();
+    }
 
 
 }
