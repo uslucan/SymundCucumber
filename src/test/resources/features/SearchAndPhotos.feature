@@ -8,3 +8,9 @@ Feature: Search and Photos Functionality
     And the user enter a file name
     And the user should be able to find and click on the file
     Then the user should be able to see the details side page of the file
+
+  Scenario Outline: User can navigate to Dashboard page whenever clicking the Symund icon
+    When the user navigates to "<Photos>" page
+    And the user click on the Symund icon
+    Then the user should be able to navigate to "Dashboard" page
+    Examples:
