@@ -33,9 +33,8 @@ public class Files_Melek_stepDef {
 
     @Then("user can see {string} in the file list")
     public void userCanSeeInTheFileList(String expectedFileName) {
-        System.out.println(page.getFileName(expectedFileName));
-//        System.out.println("actualFileName = " + actualFileName);
-//        Assert.assertEquals(expectedFileName,actualFileName);
+        String actualFileName= page.getFileName(expectedFileName);
+        Assert.assertEquals(expectedFileName,actualFileName);
     }
 
     @When("user click New folder input box")

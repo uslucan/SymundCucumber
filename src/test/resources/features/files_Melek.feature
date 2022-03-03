@@ -6,7 +6,7 @@ Feature: User should be able to upload a file, move or delete any selected file 
   Scenario: User can upload a file
     When user click the plus dropdown icon
     And user can upload file
-    Then user can see "Sprint4_SampleFile" in the file list
+    Then user can see "Sprint4_SampleFile.txt" in the file list
 
   Scenario: User can create a new folder
     When user click the plus dropdown icon
