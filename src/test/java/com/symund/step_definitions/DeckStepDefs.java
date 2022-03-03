@@ -40,4 +40,26 @@ public class DeckStepDefs {
         Assert.assertTrue(boardNamesList.contains(boardName));
     }
 
+    @When("user clicks on the board {string}")
+    public void user_clicks_on_the_board(String boardName) {
+        deckPage.navigateToBoard(boardName);
+    }
+
+    @When("user clicks on Add list button")
+    public void user_clicks_on_Add_list_button() {
+        deckPage.addListButton.click();
+    }
+
+    @When("user clicks add list arrow button")
+    public void user_clicks_add_list_arrow_button() {
+        deckPage.addListArrowButton.click();
+    }
+
+    @Then("user should be able to see {string} in {string}")
+    public void user_should_be_able_to_see_in(String listName, String boardName) {
+        Assert.assertEquals(deckPage.boardTitle.getText(), boardName);
+        List<String> listNames = BrowserUtils.getElementsText(deckPage.listOfLists);
+        Assert.assertTrue(listNames.contains(listName));
+    }
+
 }
