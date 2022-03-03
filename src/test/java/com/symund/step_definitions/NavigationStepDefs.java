@@ -9,4 +9,6 @@ public class NavigationStepDefs {
     public void user_navigates_to_module(String module) {
         new DashboardPage().navigateTo(module.toLowerCase());
     }
+
+
 }
