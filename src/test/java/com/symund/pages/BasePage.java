@@ -35,14 +35,19 @@ public abstract class BasePage {
 
     @FindBy (xpath = "//h2[contains(text(),'HK-Test')]")
     public WebElement fileInfo;
+
     @FindBy(css = ".button.new")
     public WebElement uploadbtn;
+
     @FindBy (xpath = "//label[@for='file_upload_start']")
     public WebElement uploadfile;
+
     @FindBy(css = "input.unified-search__form-input")
     public WebElement searchFile;
+
     @FindBy(xpath = "//ul[@*='Files']//a//h3")
     public WebElement FileSearchResult;
+
     @FindBy(id = "unified-search")
     public WebElement magnifyIcon;
 
