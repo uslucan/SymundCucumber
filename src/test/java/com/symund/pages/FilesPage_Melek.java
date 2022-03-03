@@ -12,6 +12,26 @@ public class FilesPage_Melek extends BasePage{
     @FindBy(xpath = "//a[@class='button new']")
     public WebElement plusIcon;
 
+    @FindBy(xpath = "//span[@class='displayname']")
+    public  WebElement uploadLink;
+
+    @FindBy(partialLinkText = "Name")
+    public WebElement NameBtn;
+
+    @FindBy(css = ".innernametext")
+    public List<WebElement> nameList;
+
+    @FindBy(partialLinkText = "Size")
+    public WebElement sizeBtn;
+
+    @FindBy(css = ".filesize")
+    public List<WebElement> sizeList;
+
+    @FindBy(partialLinkText = "Modified")
+    public WebElement modifiedBtn;
+
+    @FindBy(css = ".modified.live-relative-timestamp")
+    public List<WebElement> modifiedList;
     @FindBy(xpath = "//input[@type='file']")
     public  WebElement uploadFile;
 
