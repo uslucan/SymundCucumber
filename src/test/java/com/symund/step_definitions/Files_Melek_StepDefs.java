@@ -6,10 +6,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 
-import java.util.Random;
 
-public class Files_Melek_stepDef {
+public class Files_Melek_StepDefs {
+
     FilesPage page =  new FilesPage();
 
     @When("user click the plus dropdown icon")
@@ -49,11 +50,37 @@ public class Files_Melek_stepDef {
         // delete folder at the end this method to create again. coming message that is this folder already exist message
     }
 
+    @When("the user clicks the three-dot menu next to the {string}")
+    public void the_user_clicks_the_three_dot_menu_next_to_the(String folderName) {
+        page.clickThreeDot(folderName);
+    }
 
+    @And("click {string} button")
+    public void clickButton(String actionName) {
+        page.actions(actionName);
+    }
 
+    @When("user choose {string} as target folder")
+    public void userChooseAsTargetFolder(String folderName) {
+        page.clickTargetFolder(folderName);
+    }
 
+    @And("click Move to button that has fileName")
+    public void clickMoveToButtonThatHasFileName() {
+        page.moveToButton.click();
+    }
 
+    @When("user click {string} on Files main page")
+    public void userClickOnFilesMainPage(String targetFolderName) {
+        page.folderInFileList(targetFolderName);
+    }
 
+    @Then("user should see {string} in MSTargetFolder")
+    public void userShouldSeeInMSTargetFolder(String sourceFolder) {
+        String expectedFolderName= "MSSourceFolder";
+        String actualFolderName= page.getFileName(sourceFolder);
+        Assert.assertEquals(expectedFolderName,actualFolderName);
+    }
 
 
 

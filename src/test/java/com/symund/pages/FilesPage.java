@@ -42,8 +42,11 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "//form[@class='filenameform']/input[@type='text']")
     public  WebElement newFolderInputBox;
 
-    @FindBy(xpath = "//input[@class='icon-confirm']") //form[@class='filenameform']/input[@type='submit']
+    @FindBy(xpath = "//input[@class='icon-confirm']")
     public WebElement confirmArrow;
+
+    @FindBy(css = "button[class='primary']")
+    public WebElement moveToButton; // files are under Choose target folder
 
 
     public String getFileName(String expectedFileName) {  //  Sprint4_SampleFile.txt
@@ -51,6 +54,35 @@ public class FilesPage extends BasePage{
                 .findElement(By.xpath("//tr[@data-file='"+expectedFileName+"']"))
                 .getAttribute("data-file");
     }
+
+    public void clickThreeDot(String folderName){
+        Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']//span[@class='icon icon-more']")).click();
+    }
+
+    public void actions(String actionName) {
+        switch (actionName){
+            case"Add to favorites":
+                Driver.get().findElement(By.xpath("//*[@data-action='Favorite']")).click();
+                break;
+            case"Move or copy":
+                Driver.get().findElement(By.xpath("//*[@data-action='MoveCopy']")).click();
+                break;
+            case"Delete folder":
+                Driver.get().findElement(By.xpath("//*[@data-action='Delete']")).click();
+                break;
+        }
+    }
+
+
+    public void clickTargetFolder(String folderName){  //*[@data-entryname='MSTargetFolder']
+        Driver.get().findElement(By.xpath("//*[@data-entryname='"+folderName+"']")).click();
+    }
+
+    public void folderInFileList(String folderName){
+        Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']")).click();
+    }
+
+
 
 
 
