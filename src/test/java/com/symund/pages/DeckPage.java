@@ -40,6 +40,9 @@ public class DeckPage extends BasePage{
     @FindBy(css = "div.card-upper>h3")
     public List<WebElement> listOfCards;
 
+    @FindBy(xpath = "//button[contains(.,'Move card')]")
+    public WebElement moveCardButton;
+
 
     public void enterName(String name, String inputBoxName){
         String inputBoxLocator = "//input[@placeholder='"+inputBoxName+"']";
@@ -66,9 +69,18 @@ public class DeckPage extends BasePage{
         return Driver.get().findElement(By.xpath(locator));
     }
 
-    public boolean isUserAssignedToTask(String taskName){
-        String locator = "//h3[.='"+taskName+"']/../following-sibling::*//div[@class='avatardiv popovermenu-wrapper has-tooltip']";
-        return Driver.get().findElement(By.xpath(locator)).isDisplayed();
+    public WebElement getAvatarIcon(String cardName){
+        String locator = "//h3[.='"+cardName+"']/../following-sibling::*//div[@class='avatardiv popovermenu-wrapper has-tooltip']";
+        return Driver.get().findElement(By.xpath(locator));
+    }
+
+    public void moveCardOptions(String inputBox, String name){
+        String inputLocator = "//input[@placeholder='"+inputBox+"']";
+        Driver.get().findElement(By.xpath(inputLocator)).click();
+        String nameLocator = "//div[@title='"+name+"']";
+        BrowserUtils.waitForClickablility(By.xpath(nameLocator),3);
+        Driver.get().findElement(By.xpath(nameLocator)).click();
+
     }
 
 

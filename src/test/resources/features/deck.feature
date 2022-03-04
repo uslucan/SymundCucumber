@@ -21,3 +21,31 @@ Feature: Deck Functionality
     And user enters "Example List" into "List name"
     And user clicks add list arrow button
     Then user should be able to see "Example List" in "Example Board"
+
+  Scenario: User can create new card/task on any list under the current board
+    When user navigates to "Deck" module
+    And user clicks on navigation toggle
+    And user clicks on the board "Example Board"
+    And user clicks on Add card button under list "Example List"
+    And user enters "Example Task" into "Card name"
+    And user clicks add card arrow button
+    Then user should be able to see new card "Example Task" on the list
+
+  Scenario: User can assign any card/task to himself/herself by using the three dots on the related card
+    When user navigates to "Deck" module
+    And user clicks on navigation toggle
+    And user clicks on the board "Example Board"
+    And user clicks on three dots under card "Example Task"
+    And user clicks on "Assign to me" under three dot options
+    Then user should be able to see avatar icon on the task "Example Task"
+  @wip2
+  Scenario: User can move any card on the current board to any other list of other board
+    When user navigates to "Deck" module
+    And user clicks on navigation toggle
+    And user clicks on the board "Example Board"
+    And user clicks on three dots under card "Example Task"
+    And user clicks on "Move card" under three dot options
+    And user clicks on "Select a board" and chooses "Personal"
+    And user clicks on "Select a list" and chooses "To do"
+    And user clicks on move card button
+    Then user should be able to see "Example Task" on "To do" list under "Personal" board

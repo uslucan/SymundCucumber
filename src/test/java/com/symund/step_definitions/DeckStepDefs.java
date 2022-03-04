@@ -62,4 +62,51 @@ public class DeckStepDefs {
         Assert.assertTrue(listNames.contains(listName));
     }
 
+    @When("user clicks on Add card button under list {string}")
+    public void user_clicks_on_Add_card_button_under_list(String listName) {
+        deckPage.getAddCardButton(listName).click();
+    }
+
+    @When("user clicks add card arrow button")
+    public void user_clicks_add_card_arrow_button() {
+        deckPage.addCardArrowButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @Then("user should be able to see new card {string} on the list")
+    public void user_should_be_able_to_see_new_card_on_the_list(String cardName) {
+        List<String> nameOfCards = BrowserUtils.getElementsText(deckPage.listOfCards);
+        Assert.assertTrue(nameOfCards.contains(cardName));
+    }
+
+    @When("user clicks on three dots under card {string}")
+    public void user_clicks_on_three_dots_under_card(String cardName) {
+        deckPage.getThreeDotsButton(cardName).click();
+    }
+
+    @When("user clicks on {string} under three dot options")
+    public void user_clicks_on_under_three_dot_options(String optionName) {
+        deckPage.getCardOptionsUnderThreeDots(optionName).click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @Then("user should be able to see avatar icon on the task {string}")
+    public void user_should_be_able_to_see_avatar_icon_on_the_task(String cardName) {
+        Assert.assertTrue(deckPage.getAvatarIcon(cardName).isDisplayed());
+    }
+
+    @When("user clicks on {string} and chooses {string}")
+    public void user_clicks_on_and_chooses(String inputBoard, String boardName) {
+        deckPage.moveCardOptions(inputBoard, boardName);
+    }
+
+    @When("user clicks on move card button")
+    public void user_clicks_on_move_card_button() {
+        deckPage.moveCardButton.click();
+    }
+    @Then("user should be able to see {string} on {string} list under {string} board")
+    public void user_should_be_able_to_see_on_list_under_board(String string, String string2, String string3) {
+        System.out.println("So far ok");
+    }
+
 }
