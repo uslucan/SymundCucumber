@@ -49,9 +49,9 @@ public class FilesPage extends BasePage{
     public WebElement moveToButton; // files are under Choose target folder
 
 
-    public String getFileName(String expectedFileName) {  //  Sprint4_SampleFile.txt
+    public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
-                .findElement(By.xpath("//tr[@data-file='"+expectedFileName+"']"))
+                .findElement(By.xpath("//tr[@data-file='"+fileName+"']"))
                 .getAttribute("data-file");
     }
 

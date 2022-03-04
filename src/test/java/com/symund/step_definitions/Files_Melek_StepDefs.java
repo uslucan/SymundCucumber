@@ -30,9 +30,9 @@ public class Files_Melek_StepDefs {
     }
 
     @Then("user can see {string} in the file list")
-    public void userCanSeeInTheFileList(String expectedFileName) {
-        String actualFileName= page.getFileName(expectedFileName);
-        System.out.println("actualFileName = " + actualFileName);
+    public void userCanSeeInTheFileList(String fileName) {
+        String actualFileName= page.getFileName(fileName);
+        String expectedFileName= "Sprint4_SampleFile.txt";
         Assert.assertEquals(expectedFileName,actualFileName);
     }
 
