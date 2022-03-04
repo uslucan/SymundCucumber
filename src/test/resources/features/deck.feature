@@ -12,7 +12,7 @@ Feature: Deck Functionality
     And user enters "Example Board" into "Board name"
     And user clicks add board arrow button
     Then user should be able to see "Example Board" under all boards
-  @wip
+
   Scenario: User can create new list of card/task under any board
     When user navigates to "Deck" module
     And user clicks on navigation toggle
