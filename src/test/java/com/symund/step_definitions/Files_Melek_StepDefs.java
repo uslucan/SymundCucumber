@@ -45,7 +45,6 @@ public class Files_Melek_StepDefs {
     public void userWriteTheFolderNameAsAndClickConfirmIcon(String name) {
         BrowserUtils.waitForVisibility(page.newFolderInputBox,5);
         page.newFolderInputBox.sendKeys(name);
-        BrowserUtils.waitFor(4);
         page.confirmArrow.click();
         // delete folder at the end this method to create again. coming message that is this folder already exist message
     }
