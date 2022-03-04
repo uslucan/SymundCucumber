@@ -51,17 +51,33 @@ public class SearchAndPhotosStepDefs {
 
     @When("the user navigates to {string} page")
     public void the_user_navigates_to_page(String photos) {
-        searchAndPhotoPage.navigateToPage(photos);
+        dashboardPage.navigateTo(photos);
         BrowserUtils.waitForPageToLoad(2);
 
     }
+
     @When("the user click on the Symund icon")
     public void the_user_click_on_the_Symund_icon() {
         dashboardPage.symundLogo.click();
     }
+
     @Then("the user should be able to navigate to {string} page")
     public void the_user_should_be_able_to_navigate_to_page(String page) {
         Assert.assertTrue(searchAndPhotoPage.getPageTitle().contains(page));
 
+    }
+
+    @When("the user enter a contact name")
+    public void the_user_enter_a_contact_name() {
+        BrowserUtils.waitFor(3);
+        searchAndPhotoPage.searchContact.sendKeys("Employee1");
+    }
+
+    @Then("the user should be able to see the contact name in search result")
+    public void the_user_should_be_able_to_see_the_contact_name_in_search_result() {
+        BrowserUtils.waitFor(10);
+        String actualResult = searchAndPhotoPage.contactResult.getText();
+        System.out.println(searchAndPhotoPage.contactResult.getText());
+        Assert.assertEquals("Employee1", actualResult);
     }
 }
