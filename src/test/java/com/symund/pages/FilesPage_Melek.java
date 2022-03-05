@@ -32,6 +32,22 @@ public class FilesPage_Melek extends BasePage{
 
     @FindBy(css = ".modified.live-relative-timestamp")
     public List<WebElement> modifiedList;
+
+    @FindBy(xpath = "//*[@id='view-toggle']")
+    public WebElement toggleBtn;
+
+    @FindBy(partialLinkText = "Select all")
+    public WebElement selectAllBtn;
+
+    @FindBy (xpath = "(//*[@id=\"headerSelection\"]/label)[1]")
+    public WebElement selectAllButton;
+
+    @FindBy(xpath = "//td//input[@type='checkbox']")
+    public List<WebElement> checkboxes;
+
+    @FindBy(xpath = "/html/body/div[3]/div[2]/div[2]/table/thead/tr/th[3]/a/span[1]")
+    public WebElement totalValue;
+
     @FindBy(xpath = "//input[@type='file']")
     public  WebElement uploadFile;
 
