@@ -91,7 +91,6 @@ public class SearchAndPhotosStepDefs {
 
     @When("the user click on upload file and upload the an {string} file")
     public void the_user_click_on_upload_file_and_upload_the_an_image_file(String image) {
-        //filesPage.uploadFile.click();
         BrowserUtils.waitFor(10);
 
         String projectPath = System.getProperty("user.dir");
@@ -105,7 +104,7 @@ public class SearchAndPhotosStepDefs {
     public void user_should_be_able_to_see_uploaded_image_file_on_Photos_page(String expectedfiles) {
 
         BrowserUtils.waitFor(20);
-        String actualfiles = searchAndPhotoPage.uploadimage.getAttribute("Alt");
+        String actualfiles = searchAndPhotoPage.getfilename("sprint4.jpg");
 
         BrowserUtils.waitFor(5);
         Assert.assertEquals(expectedfiles, actualfiles);

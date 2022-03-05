@@ -18,9 +18,6 @@ public class SearchAndPhotoPage extends BasePage {
     @FindBy(id = "contactsmenu-search")
     public WebElement searchContact;
 
-    @FindBy(xpath = "//img[@alt='sprint4.jpg']")
-    public WebElement uploadimage;
-
     @FindBy(css = ".button.new")
     public WebElement plusIcon;
 
@@ -29,6 +26,12 @@ public class SearchAndPhotoPage extends BasePage {
 
     public String getPageTitle() {
         return Driver.get().getTitle();
+    }
+
+    public String getfilename(String expectedFiles) {
+        return Driver.get()
+                .findElement(By.xpath("//img[@alt='"+expectedFiles+"']"))
+                .getAttribute("alt");
     }
 
 }
