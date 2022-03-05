@@ -10,6 +10,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.awt.*;
+
 public class SearchAndPhotosStepDefs {
 
     DashboardPage dashboardPage = new DashboardPage();
@@ -79,5 +81,33 @@ public class SearchAndPhotosStepDefs {
         String actualResult = searchAndPhotoPage.contactResult.getText();
         System.out.println(searchAndPhotoPage.contactResult.getText());
         Assert.assertEquals("Employee1", actualResult);
+    }
+
+    @When("the user click on the plus icon")
+    public void the_user_click_on_the_plus_icon() {
+        searchAndPhotoPage.plusIcon.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @When("the user click on upload file and upload the an {string} file")
+    public void the_user_click_on_upload_file_and_upload_the_an_image_file(String image) {
+        //filesPage.uploadFile.click();
+        BrowserUtils.waitFor(10);
+
+        String projectPath = System.getProperty("user.dir");
+        System.out.println("projectPath = " + projectPath);
+        String filePath = "src\\test\\resources\\Sprint4.jpg";
+        String fullPath = projectPath + "/" + filePath;
+        searchAndPhotoPage.uploadFile.sendKeys(fullPath);
+        BrowserUtils.waitFor(10);
+    }
+    @Then("user should be able to see uploaded {string} file on Photos page")
+    public void user_should_be_able_to_see_uploaded_image_file_on_Photos_page(String expectedfiles) {
+
+        BrowserUtils.waitFor(20);
+        String actualfiles = searchAndPhotoPage.uploadimage.getAttribute("Alt");
+
+        BrowserUtils.waitFor(5);
+        Assert.assertEquals(expectedfiles, actualfiles);
     }
 }

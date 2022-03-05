@@ -18,8 +18,14 @@ public class SearchAndPhotoPage extends BasePage {
     @FindBy(id = "contactsmenu-search")
     public WebElement searchContact;
 
-    @FindBy(xpath = "//*[@id=\"viewer\"]/div[1]/div[1]']")
+    @FindBy(xpath = "//img[@alt='sprint4.jpg']")
     public WebElement uploadimage;
+
+    @FindBy(css = ".button.new")
+    public WebElement plusIcon;
+
+    @FindBy(xpath = "//input[@type='file']")
+    public  WebElement uploadFile;
 
     public String getPageTitle() {
         return Driver.get().getTitle();
