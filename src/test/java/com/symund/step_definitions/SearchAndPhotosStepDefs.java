@@ -55,7 +55,7 @@ public class SearchAndPhotosStepDefs {
     @When("the user navigates to {string} page")
     public void the_user_navigates_to_page(String photos) {
         dashboardPage.navigateTo(photos);
-        BrowserUtils.waitForPageToLoad(2);
+        BrowserUtils.waitForPageToLoad(5);
 
     }
 
@@ -91,7 +91,7 @@ public class SearchAndPhotosStepDefs {
     }
 
     @When("the user click on upload file and upload the an {string} file")
-    public void the_user_click_on_upload_file_and_upload_the_an_image_file(String image) {
+    public void the_user_click_on_upload_file_and_upload_the_an_image_file(String expectedFiles) {
         BrowserUtils.waitFor(10);
 
         String projectPath = System.getProperty("user.dir");
@@ -104,13 +104,13 @@ public class SearchAndPhotosStepDefs {
     @Then("user should be able to see uploaded {string} file on Photos page")
     public void user_should_be_able_to_see_uploaded_image_file_on_Photos_page(String expectedFiles) {
 
-        BrowserUtils.waitFor(20);
+        BrowserUtils.waitFor(10);
         String actualfiles = searchAndPhotoPage.getAttribute("Sprint4.jpg");
 
         BrowserUtils.waitFor(5);
         Assert.assertEquals(expectedFiles, actualfiles);
 
-        dashboardPage.navigateTo("Files");
+        dashboardPage.navigateTo("files");
         BrowserUtils.waitFor(5);
         filesPage.clickThreeDot("Sprint4.jpg");
         filesPage.deletedFiles.click();
