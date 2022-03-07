@@ -1,5 +1,6 @@
 package com.symund.step_definitions;
 
+import com.github.dockerjava.api.command.RenameContainerCmd;
 import com.symund.pages.FilesPage_Melek;
 import com.symund.pages.FilesPage_Nurgul;
 import com.symund.utilities.BrowserUtils;
@@ -39,6 +40,9 @@ public class Files_Nurgul_StepDefs {
         }
 
 
+        @Then("user should see {string} on the same folder")
+        public void userShouldSeeOnTheSameFolder(String arg0) {
 
+        }
 }
 

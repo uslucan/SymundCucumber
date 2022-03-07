@@ -32,6 +32,7 @@ public class FilesPage_Nurgul extends BasePage {
                 return Driver.get()
                         .findElement(By.xpath("//tr[@data-file='"+expectedFileName+"']"))
                         .getAttribute("data-file");
+                System.out.println();
         }
 
 }
