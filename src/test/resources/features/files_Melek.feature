@@ -36,3 +36,4 @@ Feature: User should be able to upload a file, move or delete any selected file 
     Then user should see deleted "New folder" in list
 
 
+
