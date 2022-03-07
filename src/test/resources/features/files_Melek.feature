@@ -3,7 +3,7 @@ Feature: User should be able to upload a file, move or delete any selected file 
     Given the user login with valid credentials
     When user navigates to "Files" module
 
-@SYMU-1166 @smoke
+@SYMU-1166
   Scenario: User can upload a file
     When user click the plus dropdown icon
     And user can upload file
@@ -18,11 +18,17 @@ Feature: User should be able to upload a file, move or delete any selected file 
 
 @SYMU-1169
   Scenario: User can move or copy any selected item to any folder
-    When the user clicks the three-dot menu next to the "MSSourceFolder"
+    When the user clicks the three dot menu next to the "MSSourceFolder"
     And click "Move or copy" button
     When user choose "MSTargetFolder" as target folder
     And click Move to button that has fileName
     When user click "MSTargetFolder" on Files main page
     Then user should see "MSSourceFolder" in MSTargetFolder
+  @wit
+  Scenario: User can delete folder
+    When the user clicks the three dot menu next to the "New folder"
+    And click "Delete folder" button
+    When User click Deleted files on the left bottom of page
+    Then user should see deleted "New folder" in list
 
 

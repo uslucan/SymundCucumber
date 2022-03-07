@@ -48,6 +48,11 @@ public class FilesPage extends BasePage{
     @FindBy(css = "button[class='primary']")
     public WebElement moveToButton; // files are under Choose target folder
 
+    @FindBy(linkText = "Deleted files")
+    public WebElement deletedFiles;
+
+
+
 
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
