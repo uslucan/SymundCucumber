@@ -30,7 +30,7 @@ Feature: Search and Photos Functionality
     Scenario: User can see the image files under Photos Module
     When the user navigates to "files" page
     And  the user click on the plus icon
-    And  the user click on upload file and upload the an "image" file
+    And  the user click on upload file and upload the an "Sprint4.jpg" file
     And  the user navigates to "photos" page
-    Then user should be able to see uploaded "image" file on Photos page
+    Then user should be able to see uploaded "Sprint4.jpg" file on Photos page
 

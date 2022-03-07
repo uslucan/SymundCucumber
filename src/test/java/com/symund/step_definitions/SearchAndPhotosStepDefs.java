@@ -2,6 +2,7 @@ package com.symund.step_definitions;
 
 import com.symund.pages.BasePage;
 import com.symund.pages.DashboardPage;
+import com.symund.pages.FilesPage;
 import com.symund.pages.SearchAndPhotoPage;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
@@ -16,7 +17,7 @@ public class SearchAndPhotosStepDefs {
 
     DashboardPage dashboardPage = new DashboardPage();
     SearchAndPhotoPage searchAndPhotoPage = new SearchAndPhotoPage();
-
+    FilesPage filesPage = new FilesPage();
 
     @When("the user click on the magnifying icon")
     public void the_user_click_on_the_magnifying_icon() {
@@ -101,12 +102,19 @@ public class SearchAndPhotosStepDefs {
         BrowserUtils.waitFor(10);
     }
     @Then("user should be able to see uploaded {string} file on Photos page")
-    public void user_should_be_able_to_see_uploaded_image_file_on_Photos_page(String expectedfiles) {
+    public void user_should_be_able_to_see_uploaded_image_file_on_Photos_page(String expectedFiles) {
 
         BrowserUtils.waitFor(20);
-        String actualfiles = searchAndPhotoPage.getfilename("sprint4.jpg");
+        String actualfiles = searchAndPhotoPage.getAttribute("Sprint4.jpg");
 
         BrowserUtils.waitFor(5);
-        Assert.assertEquals(expectedfiles, actualfiles);
+        Assert.assertEquals(expectedFiles, actualfiles);
+
+        dashboardPage.navigateTo("Files");
+        BrowserUtils.waitFor(5);
+        filesPage.clickThreeDot("Sprint4.jpg");
+        filesPage.deletedFiles.click();
+
+
     }
 }
