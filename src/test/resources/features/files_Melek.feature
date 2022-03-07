@@ -16,7 +16,11 @@ Feature: User should be able to upload a file, move or delete any selected file 
     And user write the folder name as "SampleFolder42" and click confirm icon
     Then user can see "SampleFolder42" in the file list
 
+
+#  Ahmet_SYMU-1150_Status
+
 @SYMU-1169
+
   Scenario: User can move or copy any selected item to any folder
     When the user clicks the three dot menu next to the "MSSourceFolder"
     And click "Move or copy" button
