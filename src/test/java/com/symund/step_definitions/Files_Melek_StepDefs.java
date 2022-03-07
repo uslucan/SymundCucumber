@@ -30,10 +30,11 @@ public class Files_Melek_StepDefs {
     }
 
     @Then("user can see {string} in the file list")
-    public void userCanSeeInTheFileList(String expectedFileName) {
-        String actualFileName= page.getFileName(expectedFileName);
-        System.out.println("actualFileName = " + actualFileName);
+    public void userCanSeeInTheFileList(String fileName) {
+        String actualFileName= page.getFileName(fileName);
+        String expectedFileName= "Sprint4_SampleFile.txt";
         Assert.assertEquals(expectedFileName,actualFileName);
+
     }
 
     @When("user click New folder input box")
@@ -45,14 +46,14 @@ public class Files_Melek_StepDefs {
     public void userWriteTheFolderNameAsAndClickConfirmIcon(String name) {
         BrowserUtils.waitForVisibility(page.newFolderInputBox,5);
         page.newFolderInputBox.sendKeys(name);
-        BrowserUtils.waitFor(4);
         page.confirmArrow.click();
         // delete folder at the end this method to create again. coming message that is this folder already exist message
     }
 
-    @When("the user clicks the three-dot menu next to the {string}")
-    public void the_user_clicks_the_three_dot_menu_next_to_the(String folderName) {
+    @When("the user clicks the three dot menu next to the {string}")
+    public void theUserClicksTheThreeDotMenuNextToThe(String folderName) {
         page.clickThreeDot(folderName);
+        BrowserUtils.waitFor(5);
     }
 
     @And("click {string} button")
@@ -83,5 +84,16 @@ public class Files_Melek_StepDefs {
     }
 
 
+    @When("User click Deleted files on the left bottom of page")
+    public void userClickDeletedFilesOnTheLeftBottomOfPage() {
+        page.deletedFiles.click();
+        BrowserUtils.waitFor(5);
+    }
 
+    @Then("user should see deleted {string} in list")
+    public void userShouldSeeDeletedInList(String folderName) {
+        String actualName=page.getFileName(folderName);
+        Assert.assertEquals(folderName,actualName);
+
+    }
 }

@@ -1,15 +1,12 @@
 package com.symund.step_definitions;
 
-import com.symund.pages.FilesPage_Melek;
 import com.symund.pages.FilesPage_Nurgul;
 import com.symund.utilities.BrowserUtils;
-import com.symund.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
 
 public class Files_Nurgul_StepDefs {
 

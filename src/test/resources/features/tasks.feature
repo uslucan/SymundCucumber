@@ -1,4 +1,4 @@
-@wip
+
 Feature: Tasks Functionality
 
   #As a user, I should be able to create a new task list or a single task and add any task to completed and importants tasks list.
