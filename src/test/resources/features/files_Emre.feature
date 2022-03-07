@@ -1,3 +1,4 @@
+
 Feature:User can change folder view order
 
   Background:
@@ -19,7 +20,6 @@ Feature:User can change folder view order
     When user navigates to "Files" module
     Then user click toggle-view button and user should see folder view changed
 
-  @wip
   Scenario: User can select all the files at once and see the total values of all files
   in the first line when clicked on the “select all” checkbox
     When user navigates to "Files" module
