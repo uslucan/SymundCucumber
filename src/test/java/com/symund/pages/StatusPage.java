@@ -38,5 +38,15 @@ public class StatusPage extends BasePage {
         return isSelected;
     }
 
+    public void selectStatus(String status){
+        status=status.toLowerCase();
+        Driver.get().findElement(By.cssSelector(".user-status-online-select__label.icon-user-status-"+status)).click();
+    }
+
+    public boolean isSelected(String status){
+        status=status.toLowerCase();
+        return Driver.get().findElement(By.xpath("//*[@id='user-status-online-status-" + status + "']")).isSelected();
+    }
+
 
 }
