@@ -2,7 +2,7 @@ Feature: User should be able to upload a file, move or delete any selected file 
   Background:
     Given the user login with valid credentials
     When user navigates to "Files" module
-  @wip
+
   Scenario: User can upload a file
     When user click the plus dropdown icon
     And user can upload file

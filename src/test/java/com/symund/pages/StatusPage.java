@@ -1,5 +1,6 @@
 package com.symund.pages;
 
+import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,9 @@ public class StatusPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='expanddiv']/ul/li[1]/div/a")
     public WebElement statusOnAvatar;
+
+    @FindBy(css = ".status-buttons__select")
+    public WebElement clearStatus;
 
     /*   @FindBy ( xpath = "//*[@id='user-status-online-status-away']")
        public WebElement awayStatus;
@@ -27,7 +31,6 @@ public class StatusPage extends BasePage {
     public String selectedStatus = statusWindow.getText().toLowerCase();
 
     public boolean findSelected() {
-
         if (selectedStatus.equals("do not disturb")) {
             selectedStatus = "dnd";
         }
