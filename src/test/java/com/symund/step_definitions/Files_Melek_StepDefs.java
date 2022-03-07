@@ -6,12 +6,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
+
 
 
 public class Files_Melek_StepDefs {
 
     FilesPage page =  new FilesPage();
+    String fakeFolderName= page.createFolderName();
+    String fakeFolderName2= page.createFolderName();
 
     @When("user click the plus dropdown icon")
     public void user_click_the_plus_dropdown_icon() {
@@ -19,8 +21,8 @@ public class Files_Melek_StepDefs {
         page.plusIcon.click();
     }
 
-    @Then("user can upload file")
-    public void user_can_upload_file() {
+    @And("user can upload file")
+    public void userCanUploadFile() {
         String projectPath= System.getProperty("user.dir");
         System.out.println("projectPath = " + projectPath);
         String filePath="src\\test\\resources\\Sprint4_SampleFile.txt";
@@ -32,9 +34,8 @@ public class Files_Melek_StepDefs {
     @Then("user can see {string} in the file list")
     public void userCanSeeInTheFileList(String fileName) {
         String actualFileName= page.getFileName(fileName);
-        String expectedFileName= "Sprint4_SampleFile.txt";
-        Assert.assertEquals(expectedFileName,actualFileName);
-
+        Assert.assertEquals(fileName,actualFileName);
+        page.deleteFolderToReuse(fileName);
     }
 
     @When("user click New folder input box")
@@ -42,18 +43,25 @@ public class Files_Melek_StepDefs {
         page.newFolder.click();
     }
 
-    @And("user write the folder name as {string} and click confirm icon")
-    public void userWriteTheFolderNameAsAndClickConfirmIcon(String name) {
-        BrowserUtils.waitForVisibility(page.newFolderInputBox,5);
-        page.newFolderInputBox.sendKeys(name);
+    @And("user write the folder name and click confirm icon")
+    public void userWriteTheFolderNameAndClickConfirmIcon() {
+        BrowserUtils.waitForVisibility(page.newFolderInputBox,10);
+        page.newFolderInputBox.sendKeys(fakeFolderName);
+        System.out.println("fakeFolderName under creat = " + fakeFolderName);
         page.confirmArrow.click();
-        // delete folder at the end this method to create again. coming message that is this folder already exist message
+    }
+
+    @Then("user can see folder in the file list")
+    public void userCanSeeFolderInTheFileList() {
+        String actualFileName= page.getFileName(fakeFolderName);
+        System.out.println("fakeFolderName under verify = " + fakeFolderName);
+        Assert.assertEquals(fakeFolderName,actualFileName);
+        page.deleteFolderToReuse(fakeFolderName);
     }
 
     @When("the user clicks the three dot menu next to the {string}")
     public void theUserClicksTheThreeDotMenuNextToThe(String folderName) {
         page.clickThreeDot(folderName);
-        BrowserUtils.waitFor(5);
     }
 
     @And("click {string} button")
@@ -92,8 +100,13 @@ public class Files_Melek_StepDefs {
 
     @Then("user should see deleted {string} in list")
     public void userShouldSeeDeletedInList(String folderName) {
+        page.NameBtn.click();
+        BrowserUtils.waitFor(5);
         String actualName=page.getFileName(folderName);
         Assert.assertEquals(folderName,actualName);
 
     }
+
+
+
 }

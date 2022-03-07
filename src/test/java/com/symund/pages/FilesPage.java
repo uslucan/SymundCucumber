@@ -1,11 +1,13 @@
 package com.symund.pages;
 
+import com.github.javafaker.Faker;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.lang.invoke.StringConcatFactory;
 import java.util.List;
 
 public class FilesPage extends BasePage{
@@ -51,7 +53,11 @@ public class FilesPage extends BasePage{
     @FindBy(linkText = "Deleted files")
     public WebElement deletedFiles;
 
+    @FindBy(css = "label[for='checkbox-allnewfiles']")
+    public WebElement chooseNewVersionOfFolder;
 
+    @FindBy(xpath = "//button[contains(.,'Continue')]")
+    public WebElement continueButton;
 
 
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
@@ -59,6 +65,18 @@ public class FilesPage extends BasePage{
                 .findElement(By.xpath("//tr[@data-file='"+fileName+"']"))
                 .getAttribute("data-file");
     }
+
+    public void chooseNewFolder(){
+        chooseNewVersionOfFolder.click();
+        BrowserUtils.waitFor(3);
+        continueButton.click();
+    }
+
+//    public String getFolderName(String fileName) {
+//        return Driver.get()
+//                .findElement(By.xpath("//span[contains(text(),'new')]"))
+//                .getText();
+//    }
 
     public void clickThreeDot(String folderName){
         Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']//span[@class='icon icon-more']")).click();
@@ -85,6 +103,17 @@ public class FilesPage extends BasePage{
 
     public void folderInFileList(String folderName){
         Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']")).click();
+    }
+
+    public String createFolderName(){
+        Faker faker= new Faker();
+        return faker.animal().name();
+    }
+
+    public void deleteFolderToReuse(String fakeFolder){
+        clickThreeDot(fakeFolder);
+        BrowserUtils.waitFor(2);
+        actions("Delete folder");
     }
 
 

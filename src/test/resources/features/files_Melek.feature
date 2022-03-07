@@ -3,7 +3,7 @@ Feature: User should be able to upload a file, move or delete any selected file 
     Given the user login with valid credentials
     When user navigates to "Files" module
 
-@SYMU-1166
+@SYMU-1166 @smoke
   Scenario: User can upload a file
     When user click the plus dropdown icon
     And user can upload file
@@ -13,11 +13,8 @@ Feature: User should be able to upload a file, move or delete any selected file 
   Scenario: User can create a new folder
     When user click the plus dropdown icon
     And user click New folder input box
-    And user write the folder name as "SampleFolder42" and click confirm icon
-    Then user can see "SampleFolder42" in the file list
-
-
-#  Ahmet_SYMU-1150_Status
+    And user write the folder name and click confirm icon
+    Then user can see folder in the file list
 
 @SYMU-1169
 
