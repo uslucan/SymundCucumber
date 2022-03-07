@@ -1,0 +1,1 @@
+Feature: Symund Smoke Test
