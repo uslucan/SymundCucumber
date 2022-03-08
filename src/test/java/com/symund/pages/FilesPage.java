@@ -51,8 +51,20 @@ public class FilesPage extends BasePage{
     @FindBy(linkText = "Deleted files")
     public WebElement deletedFiles;
 
+    @FindBy(xpath = "//*[@id='view-toggle']")
+    public WebElement toggleBtn;
 
+    @FindBy(partialLinkText = "Select all")
+    public WebElement selectAllBtn;
 
+    @FindBy (xpath = "(//*[@id=\"headerSelection\"]/label)[1]")
+    public WebElement selectAllButton;
+
+    @FindBy(xpath = "//td//input[@type='checkbox']")
+    public List<WebElement> checkboxes;
+
+    @FindBy(xpath = "/html/body/div[3]/div[2]/div[2]/table/thead/tr/th[3]/a/span[1]")
+    public WebElement totalValue;
 
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
