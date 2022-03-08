@@ -53,13 +53,6 @@ public class FilesPage extends BasePage{
     @FindBy(linkText = "Deleted files")
     public WebElement deletedFiles;
 
-//    @FindBy(css = "label[for='checkbox-allnewfiles']")
-//    public WebElement chooseNewVersionOfFolder;
-//
-//    @FindBy(xpath = "//button[contains(.,'Continue')]")
-//    public WebElement continueButton;
-
-
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
                 .findElement(By.xpath("//tr[@data-file='"+fileName+"']"))
