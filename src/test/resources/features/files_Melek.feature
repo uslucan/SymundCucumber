@@ -16,16 +16,17 @@ Feature: User should be able to upload a file, move or delete any selected file 
     And user write the folder name and click confirm icon
     Then user can see folder in the file list
 
-@SYMU-1169
-
+@SYMU-1169 @wip
   Scenario: User can move or copy any selected item to any folder
-    When the user clicks the three dot menu next to the "MSSourceFolder"
+    When after a folder is selected
+    When the user clicks the three dot menu next to the folder name
     And click "Move or copy" button
     When user choose "MSTargetFolder" as target folder
     And click Move to button that has fileName
     When user click "MSTargetFolder" on Files main page
-    Then user should see "MSSourceFolder" in MSTargetFolder
-  @wit
+    Then user should see moved folder in MSTargetFolder
+
+
   Scenario: User can delete folder
     When the user clicks the three dot menu next to the "New folder"
     And click "Delete folder" button

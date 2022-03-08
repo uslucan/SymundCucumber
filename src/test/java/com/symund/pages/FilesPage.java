@@ -105,7 +105,7 @@ public class FilesPage extends BasePage{
         Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']")).click();
     }
 
-    public String createFolderName(){
+    public String createFakeFolderName(){
         Faker faker= new Faker();
         return faker.animal().name();
     }
