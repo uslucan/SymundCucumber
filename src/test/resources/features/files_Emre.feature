@@ -1,4 +1,4 @@
-@SYMU-1177
+@smoke
 Feature:User can change folder view order
 
   Background:
