@@ -1,5 +1,6 @@
 
-Feature:User can change folder view order
+@smoke
+Feature: Symund Smoke Test
 
   Background:
     Given the user login with valid credentials
