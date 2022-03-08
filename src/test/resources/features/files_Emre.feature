@@ -1,4 +1,4 @@
-@smoke
+
 Feature:User can change folder view order
 
   Background:
