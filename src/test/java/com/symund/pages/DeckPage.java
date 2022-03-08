@@ -25,7 +25,7 @@ public class DeckPage extends BasePage{
     @FindBy(css = "div#stack-add>button")
     public WebElement addListButton;
 
-    @FindBy(xpath = "//div[@id='stack-add']//input[@class='icon-confirm has-tooltip']")
+    @FindBy(xpath = "//div[@id='stack-add']//input[@type='submit']")
     public WebElement addListArrowButton;
 
     @FindBy(css = "h3[class='stack__title has-tooltip']")
@@ -81,6 +81,11 @@ public class DeckPage extends BasePage{
         BrowserUtils.waitForClickablility(By.xpath(nameLocator),3);
         Driver.get().findElement(By.xpath(nameLocator)).click();
 
+    }
+
+    public List<WebElement> getListOfCards(String listName){
+        String locator = "//h3[contains(.,'"+listName+"')]/../following-sibling::*//div[@class='card-upper']/h3";
+        return Driver.get().findElements(By.xpath(locator));
     }
 
 

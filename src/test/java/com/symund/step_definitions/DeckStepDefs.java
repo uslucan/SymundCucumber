@@ -5,6 +5,7 @@ import com.symund.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 import java.util.List;
 
@@ -20,11 +21,13 @@ public class DeckStepDefs {
     @When("user clicks on Add board")
     public void user_clicks_on_Add_board() {
         deckPage.addBoardLink.click();
+        BrowserUtils.waitFor(2);
     }
 
     @When("user enters {string} into {string}")
     public void user_enters_into(String name, String inputBoxName) {
         deckPage.enterName(name,inputBoxName);
+        BrowserUtils.waitFor(2);
     }
 
     @When("user clicks add board arrow button")
@@ -53,6 +56,7 @@ public class DeckStepDefs {
     @When("user clicks add list arrow button")
     public void user_clicks_add_list_arrow_button() {
         deckPage.addListArrowButton.click();
+        BrowserUtils.waitFor(2);
     }
 
     @Then("user should be able to see {string} in {string}")
@@ -73,9 +77,10 @@ public class DeckStepDefs {
         BrowserUtils.waitFor(2);
     }
 
-    @Then("user should be able to see new card {string} on the list")
-    public void user_should_be_able_to_see_new_card_on_the_list(String cardName) {
-        List<String> nameOfCards = BrowserUtils.getElementsText(deckPage.listOfCards);
+    @Then("user should be able to see card {string} on the list {string}")
+    public void user_should_be_able_to_see_new_card_on_the_list(String cardName, String listName) {
+        List<String> nameOfCards = BrowserUtils.getElementsText(deckPage.getListOfCards(listName));
+        System.out.println("nameOfCards = " + nameOfCards);
         Assert.assertTrue(nameOfCards.contains(cardName));
     }
 
@@ -104,9 +109,6 @@ public class DeckStepDefs {
     public void user_clicks_on_move_card_button() {
         deckPage.moveCardButton.click();
     }
-    @Then("user should be able to see {string} on {string} list under {string} board")
-    public void user_should_be_able_to_see_on_list_under_board(String string, String string2, String string3) {
-        System.out.println("So far ok");
-    }
+
 
 }
