@@ -1,10 +1,12 @@
 package com.symund.pages;
 
+import com.github.javafaker.Faker;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 
 import java.util.List;
 
@@ -72,6 +74,19 @@ public class FilesPage extends BasePage{
                 .getAttribute("data-file");
     }
 
+    public void creatNewFolder(){
+        BrowserUtils.waitForPageToLoad(10);
+        plusIcon.click();
+        newFolder.click();
+        BrowserUtils.waitForVisibility(newFolderInputBox,10);
+    }
+
+    public String getFolderName(String folder) {
+        return Driver.get()
+                .findElement(By.xpath("//span[contains(text(),'"+folder+"')]"))
+                .getText();
+    }
+
     public void clickThreeDot(String folderName){
         Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']//span[@class='icon icon-more']")).click();
     }
@@ -90,13 +105,23 @@ public class FilesPage extends BasePage{
         }
     }
 
-
     public void clickTargetFolder(String folderName){  //*[@data-entryname='MSTargetFolder']
         Driver.get().findElement(By.xpath("//*[@data-entryname='"+folderName+"']")).click();
     }
 
     public void folderInFileList(String folderName){
         Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']")).click();
+    }
+
+    public String createFakeFolderName(){
+        Faker faker= new Faker();
+        return faker.animal().name();
+    }
+
+    public void deleteFolderToReuse(String folder){
+        clickThreeDot(folder);
+        BrowserUtils.waitFor(2);
+        actions("Delete folder");
     }
 
 

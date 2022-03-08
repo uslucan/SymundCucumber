@@ -2,16 +2,21 @@ package com.symund.step_definitions;
 
 import com.symund.pages.FilesPage;
 import com.symund.utilities.BrowserUtils;
+import com.symund.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 
 public class Files_Melek_StepDefs {
 
     FilesPage page =  new FilesPage();
+    JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
+    String fakeFolderName= page.createFakeFolderName();
+    String willBeDeleted= page.createFakeFolderName();
+    String getFakeFolderName= page.createFakeFolderName();
 
     @When("user click the plus dropdown icon")
     public void user_click_the_plus_dropdown_icon() {
@@ -19,22 +24,19 @@ public class Files_Melek_StepDefs {
         page.plusIcon.click();
     }
 
-    @Then("user can upload file")
-    public void user_can_upload_file() {
+    @And("user can upload file")
+    public void userCanUploadFile() {
         String projectPath= System.getProperty("user.dir");
-        System.out.println("projectPath = " + projectPath);
         String filePath="src\\test\\resources\\Sprint4_SampleFile.txt";
         String fullPath= projectPath+"\\"+ filePath;
-        System.out.println("fullPath = " + fullPath);
         page.uploadFile.sendKeys(fullPath);
     }
 
     @Then("user can see {string} in the file list")
     public void userCanSeeInTheFileList(String fileName) {
         String actualFileName= page.getFileName(fileName);
-        String expectedFileName= "Sprint4_SampleFile.txt";
-        Assert.assertEquals(expectedFileName,actualFileName);
-
+        Assert.assertEquals(fileName,actualFileName);
+        page.deleteFolderToReuse(fileName);
     }
 
     @When("user click New folder input box")
@@ -42,18 +44,22 @@ public class Files_Melek_StepDefs {
         page.newFolder.click();
     }
 
-    @And("user write the folder name as {string} and click confirm icon")
-    public void userWriteTheFolderNameAsAndClickConfirmIcon(String name) {
-        BrowserUtils.waitForVisibility(page.newFolderInputBox,5);
-        page.newFolderInputBox.sendKeys(name);
+    @And("user write the folder name and click confirm icon")
+    public void userWriteTheFolderNameAndClickConfirmIcon() {
+        BrowserUtils.waitForVisibility(page.newFolderInputBox,10);
+        page.newFolderInputBox.sendKeys(fakeFolderName);
         page.confirmArrow.click();
-        // delete folder at the end this method to create again. coming message that is this folder already exist message
+    }
+
+    @Then("user can see folder in the file list")
+    public void userCanSeeFolderInTheFileList() {
+        String actualFileName= page.getFileName(fakeFolderName);
+        Assert.assertEquals(fakeFolderName,actualFileName);
     }
 
     @When("the user clicks the three dot menu next to the {string}")
     public void theUserClicksTheThreeDotMenuNextToThe(String folderName) {
         page.clickThreeDot(folderName);
-        BrowserUtils.waitFor(5);
     }
 
     @And("click {string} button")
@@ -74,26 +80,55 @@ public class Files_Melek_StepDefs {
     @When("user click {string} on Files main page")
     public void userClickOnFilesMainPage(String targetFolderName) {
         page.folderInFileList(targetFolderName);
+        BrowserUtils.waitFor(3);
     }
 
-    @Then("user should see {string} in MSTargetFolder")
-    public void userShouldSeeInMSTargetFolder(String sourceFolder) {
-        String expectedFolderName= "MSSourceFolder";
-        String actualFolderName= page.getFileName(sourceFolder);
-        Assert.assertEquals(expectedFolderName,actualFolderName);
+    @When("after a folder is selected")
+    public void afterAFolderIsSelected() {
+        page.creatNewFolder();
+        page.newFolderInputBox.sendKeys(getFakeFolderName);
+        page.confirmArrow.click();
     }
 
+    @When("the user clicks the three dot menu next to the folder name")
+    public void theUserClicksTheThreeDotMenuNextToTheFolderName() {
+        page.NameBtn.click();
+        page.clickThreeDot(getFakeFolderName);
+        BrowserUtils.waitFor(2);
+    }
+
+    @Then("user should see moved folder in MSTargetFolder")
+    public void userShouldSeeMovedFolderInMSTargetFolder() {
+        String actualFolderName= page.getFileName(getFakeFolderName);
+        Assert.assertEquals(getFakeFolderName,actualFolderName);
+    }
+
+    @When("select a folder")
+    public void selectAFolder() {
+        page.creatNewFolder();
+        page.newFolderInputBox.sendKeys(willBeDeleted);
+        page.confirmArrow.click();
+    }
+
+    @When("the user clicks the three dot menu next to the new created folder and click {string} button")
+    public void theUserClicksTheThreeDotMenuNextToTheNewCreatedFolderAndClickButton(String deletedFolder) {
+        jse.executeScript("window.scrollBy(0,250)", "");
+        BrowserUtils.waitFor(2);
+        page.clickThreeDot(willBeDeleted);
+        BrowserUtils.waitFor(2);
+        page.actions("Delete folder");
+    }
 
     @When("User click Deleted files on the left bottom of page")
     public void userClickDeletedFilesOnTheLeftBottomOfPage() {
         page.deletedFiles.click();
-        BrowserUtils.waitFor(5);
     }
 
-    @Then("user should see deleted {string} in list")
-    public void userShouldSeeDeletedInList(String folderName) {
-        String actualName=page.getFileName(folderName);
-        Assert.assertEquals(folderName,actualName);
-
+    @Then("user should see deleted folder in list")
+    public void userShouldSeeDeletedFolderInList() {
+        page.NameBtn.click();
+        BrowserUtils.waitFor(2);
+        String actualFileName= page.getFolderName(willBeDeleted);
+        Assert.assertEquals(willBeDeleted,actualFileName);
     }
 }
