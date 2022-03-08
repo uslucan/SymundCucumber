@@ -5,6 +5,7 @@ import com.symund.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 
 import java.util.List;
 
@@ -20,11 +21,13 @@ public class DeckStepDefs {
     @When("user clicks on Add board")
     public void user_clicks_on_Add_board() {
         deckPage.addBoardLink.click();
+        BrowserUtils.waitFor(2);
     }
 
     @When("user enters {string} into {string}")
     public void user_enters_into(String name, String inputBoxName) {
         deckPage.enterName(name,inputBoxName);
+        BrowserUtils.waitFor(2);
     }
 
     @When("user clicks add board arrow button")
@@ -53,6 +56,7 @@ public class DeckStepDefs {
     @When("user clicks add list arrow button")
     public void user_clicks_add_list_arrow_button() {
         deckPage.addListArrowButton.click();
+        BrowserUtils.waitFor(2);
     }
 
     @Then("user should be able to see {string} in {string}")
@@ -61,5 +65,50 @@ public class DeckStepDefs {
         List<String> listNames = BrowserUtils.getElementsText(deckPage.listOfLists);
         Assert.assertTrue(listNames.contains(listName));
     }
+
+    @When("user clicks on Add card button under list {string}")
+    public void user_clicks_on_Add_card_button_under_list(String listName) {
+        deckPage.getAddCardButton(listName).click();
+    }
+
+    @When("user clicks add card arrow button")
+    public void user_clicks_add_card_arrow_button() {
+        deckPage.addCardArrowButton.click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @Then("user should be able to see card {string} on the list {string}")
+    public void user_should_be_able_to_see_new_card_on_the_list(String cardName, String listName) {
+        List<String> nameOfCards = BrowserUtils.getElementsText(deckPage.getListOfCards(listName));
+        System.out.println("nameOfCards = " + nameOfCards);
+        Assert.assertTrue(nameOfCards.contains(cardName));
+    }
+
+    @When("user clicks on three dots under card {string}")
+    public void user_clicks_on_three_dots_under_card(String cardName) {
+        deckPage.getThreeDotsButton(cardName).click();
+    }
+
+    @When("user clicks on {string} under three dot options")
+    public void user_clicks_on_under_three_dot_options(String optionName) {
+        deckPage.getCardOptionsUnderThreeDots(optionName).click();
+        BrowserUtils.waitFor(2);
+    }
+
+    @Then("user should be able to see avatar icon on the task {string}")
+    public void user_should_be_able_to_see_avatar_icon_on_the_task(String cardName) {
+        Assert.assertTrue(deckPage.getAvatarIcon(cardName).isDisplayed());
+    }
+
+    @When("user clicks on {string} and chooses {string}")
+    public void user_clicks_on_and_chooses(String inputBoard, String boardName) {
+        deckPage.moveCardOptions(inputBoard, boardName);
+    }
+
+    @When("user clicks on move card button")
+    public void user_clicks_on_move_card_button() {
+        deckPage.moveCardButton.click();
+    }
+
 
 }
