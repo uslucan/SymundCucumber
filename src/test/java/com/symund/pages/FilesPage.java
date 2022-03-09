@@ -72,10 +72,10 @@ public class FilesPage extends BasePage{
     public WebElement sortedByDeleted;
 
     @FindBy(css = "span[class='dirinfo']")
-    public WebElement countOfFolders;
+    public WebElement numOfFolders;
 
     @FindBy(css = "span[class='fileinfo']")
-    public WebElement countOfFiles;
+    public WebElement numOfFiles;
 
 
     //tr[@data-file='SampleFile.txt']//span[@class='extension']
@@ -134,6 +134,38 @@ public class FilesPage extends BasePage{
         clickThreeDot(folder);
         BrowserUtils.waitFor(2);
         actions("Delete folder");
+    }
+
+    public int sumOfFolderInList(){
+        int folderNumber=0;
+        int totalNumber= listOfFiles.size();
+
+        for(int i=0; i<totalNumber;i++){
+            if(!listOfFiles.get(i).getAttribute("data-file").contains("."))
+                folderNumber++;
+        }
+        return folderNumber;
+    }
+
+    public int sumOfFilesInList(){
+        int filesNumber=0;
+        int totalNumber= listOfFiles.size();
+
+        for(int i=0; i<totalNumber;i++){
+            if(listOfFiles.get(i).getAttribute("data-file").contains("."))
+                filesNumber++;
+        }
+        return filesNumber;
+    }
+
+    public int sumOfFoldersBottomOfPage(){
+        String[] folder= numOfFolders.getText().split(" ");
+        return Integer.parseInt(folder[0]);
+    }
+
+    public int sumOfFilesBottomOfPage(){
+        String[] files= numOfFiles.getText().split(" ");
+        return Integer.parseInt(files[0]);
     }
 
 
