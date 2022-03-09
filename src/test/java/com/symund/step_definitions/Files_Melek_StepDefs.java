@@ -140,4 +140,21 @@ public class Files_Melek_StepDefs {
         String actualFileName= page.getFolderName(willBeDeleted);
         Assert.assertEquals(willBeDeleted,actualFileName);
     }
+
+    @When("user roll down list table bottom of the Files page")
+    public void user_roll_down_list_table_bottom_of_the_Files_page() {
+
+
+
+    }
+
+    @Then("user should see total number of folders and files")
+    public void user_should_see_total_number_of_folders_and_files() {
+        ((JavascriptExecutor) Driver.get()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        String actualFoldersCount= page.countOfFolders.getText();
+        String actualFilesCount= page.countOfFiles.getText();
+
+    }
+
+
 }
