@@ -7,6 +7,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
 
@@ -36,6 +37,7 @@ public class Files_Melek_StepDefs {
     public void userCanSeeInTheFileList(String fileName) {
         String actualFileName= page.getFileName(fileName);
         Assert.assertEquals(fileName,actualFileName);
+        BrowserUtils.waitFor(2);
         page.deleteFolderToReuse(fileName);
     }
 
@@ -59,26 +61,32 @@ public class Files_Melek_StepDefs {
 
     @When("the user clicks the three dot menu next to the {string}")
     public void theUserClicksTheThreeDotMenuNextToThe(String folderName) {
+       // jse.executeScript("window.scrollBy(0,250)", "");
+        BrowserUtils.waitFor(2);
         page.clickThreeDot(folderName);
     }
 
     @And("click {string} button")
     public void clickButton(String actionName) {
+        BrowserUtils.waitFor(2);
         page.actions(actionName);
     }
 
     @When("user choose {string} as target folder")
     public void userChooseAsTargetFolder(String folderName) {
+        BrowserUtils.waitFor(2);
         page.clickTargetFolder(folderName);
     }
 
     @And("click Move to button that has fileName")
     public void clickMoveToButtonThatHasFileName() {
+        BrowserUtils.waitForClickablility(page.moveToButton,5);
         page.moveToButton.click();
     }
 
     @When("user click {string} on Files main page")
     public void userClickOnFilesMainPage(String targetFolderName) {
+        BrowserUtils.waitForClickablility(By.xpath("//tr[@data-file='"+targetFolderName+"']"),5);
         page.folderInFileList(targetFolderName);
         BrowserUtils.waitFor(3);
     }
@@ -86,6 +94,7 @@ public class Files_Melek_StepDefs {
     @When("after a folder is selected")
     public void afterAFolderIsSelected() {
         page.creatNewFolder();
+        BrowserUtils.waitForVisibility(page.newFolderInputBox,10);
         page.newFolderInputBox.sendKeys(getFakeFolderName);
         page.confirmArrow.click();
     }
@@ -93,6 +102,7 @@ public class Files_Melek_StepDefs {
     @When("the user clicks the three dot menu next to the folder name")
     public void theUserClicksTheThreeDotMenuNextToTheFolderName() {
         page.NameBtn.click();
+        BrowserUtils.waitFor(2);
         page.clickThreeDot(getFakeFolderName);
         BrowserUtils.waitFor(2);
     }
@@ -126,8 +136,7 @@ public class Files_Melek_StepDefs {
 
     @Then("user should see deleted folder in list")
     public void userShouldSeeDeletedFolderInList() {
-        page.NameBtn.click();
-        BrowserUtils.waitFor(2);
+        page.sortedByDeleted.click();
         String actualFileName= page.getFolderName(willBeDeleted);
         Assert.assertEquals(willBeDeleted,actualFileName);
     }
