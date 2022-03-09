@@ -36,6 +36,9 @@ Feature: User should be able to upload a file, move or delete any selected file 
 
 @SYMU-1185
   Scenario: User can see the total number of files and folders under the files list table
+    When user roll down
+
+
 
 
 
