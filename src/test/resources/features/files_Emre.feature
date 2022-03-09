@@ -1,4 +1,4 @@
-@smokee
+
 Feature: Symund Smoke Test
 
   Background:
