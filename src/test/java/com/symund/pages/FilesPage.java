@@ -68,6 +68,10 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "/html/body/div[3]/div[2]/div[2]/table/thead/tr/th[3]/a/span[1]")
     public WebElement totalValue;
 
+    //tr[@data-file='SampleFile.txt']//span[@class='extension']
+    //    span[class='dirinfo']  get text: count of folder
+    //    span[class='fileinfo']  get text: count of files
+
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
                 .findElement(By.xpath("//tr[@data-file='"+fileName+"']"))
@@ -78,7 +82,6 @@ public class FilesPage extends BasePage{
         BrowserUtils.waitForPageToLoad(10);
         plusIcon.click();
         newFolder.click();
-        BrowserUtils.waitForVisibility(newFolderInputBox,10);
     }
 
     public String getFolderName(String folder) {
