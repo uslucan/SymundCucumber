@@ -154,6 +154,7 @@ public class Files_Melek_StepDefs {
     @Then("user should see total number of folders and files")
     public void user_should_see_total_number_of_folders_and_files() {
 
+        ((JavascriptExecutor) Driver.get()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
         String actualFoldersCount= page.countOfFolders.getText();
         String actualFilesCount= page.countOfFiles.getText();
