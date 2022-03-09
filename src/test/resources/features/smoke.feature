@@ -40,7 +40,7 @@ Feature: Symund Smoke Test
 #    And user click New folder input box
 #    And user write the folder name and click confirm icon
 #    Then user can see folder in the file list
-#
+#//
 #  Scenario: User can add any file to favorites from its own three dots menu
 #    Given user navigates to "Files" module
 #    When the user clicks the three-dot menu next to the "NYNewFolder"
