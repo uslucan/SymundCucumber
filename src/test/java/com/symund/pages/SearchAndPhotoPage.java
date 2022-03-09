@@ -28,7 +28,7 @@ public class SearchAndPhotoPage extends BasePage {
         return Driver.get().getTitle();
     }
 
-    public String getfilename(String expectedFiles) {
+    public String getAttribute(String expectedFiles) {
         return Driver.get()
                 .findElement(By.xpath("//img[@alt='"+expectedFiles+"']"))
                 .getAttribute("alt");
