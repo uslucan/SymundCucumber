@@ -29,6 +29,7 @@ Feature: User should be able to change profile info settings
     When the user clicks on "published"
     Then user changes it to "published"
 
+
   Scenario: User can see the current local time
     When the user scrolls down
     Then the user can see the local time
