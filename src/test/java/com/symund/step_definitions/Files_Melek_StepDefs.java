@@ -9,6 +9,8 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 
 
 public class Files_Melek_StepDefs {
@@ -144,13 +146,15 @@ public class Files_Melek_StepDefs {
     @When("user roll down list table bottom of the Files page")
     public void user_roll_down_list_table_bottom_of_the_Files_page() {
 
-
+        jse.executeScript("arguments[0].scrollIntoView();", page.countOfFolders);
+       BrowserUtils.waitFor(2);
 
     }
 
     @Then("user should see total number of folders and files")
     public void user_should_see_total_number_of_folders_and_files() {
-        ((JavascriptExecutor) Driver.get()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+
         String actualFoldersCount= page.countOfFolders.getText();
         String actualFilesCount= page.countOfFiles.getText();
 

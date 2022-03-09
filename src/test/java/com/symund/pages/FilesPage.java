@@ -77,8 +77,9 @@ public class FilesPage extends BasePage{
     @FindBy(css = "span[class='fileinfo']")
     public WebElement countOfFiles;
 
+
     //tr[@data-file='SampleFile.txt']//span[@class='extension']
-// Modified
+
 
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
