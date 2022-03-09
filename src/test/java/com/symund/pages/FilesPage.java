@@ -68,6 +68,9 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "/html/body/div[3]/div[2]/div[2]/table/thead/tr/th[3]/a/span[1]")
     public WebElement totalValue;
 
+    @FindBy(xpath = "//span[contains(.,'Deleted')]")
+    public WebElement sortedByDeleted;
+
     //tr[@data-file='SampleFile.txt']//span[@class='extension']
     //    span[class='dirinfo']  get text: count of folder
     //    span[class='fileinfo']  get text: count of files

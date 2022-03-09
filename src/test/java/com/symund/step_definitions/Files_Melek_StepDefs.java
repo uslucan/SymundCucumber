@@ -136,8 +136,7 @@ public class Files_Melek_StepDefs {
 
     @Then("user should see deleted folder in list")
     public void userShouldSeeDeletedFolderInList() {
-        page.NameBtn.click();
-        BrowserUtils.waitFor(2);
+        page.sortedByDeleted.click();
         String actualFileName= page.getFolderName(willBeDeleted);
         Assert.assertEquals(willBeDeleted,actualFileName);
     }
