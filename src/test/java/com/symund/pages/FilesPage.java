@@ -1,10 +1,12 @@
 package com.symund.pages;
 
+import com.github.javafaker.Faker;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
 
 import java.util.List;
 
@@ -66,10 +68,35 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "/html/body/div[3]/div[2]/div[2]/table/thead/tr/th[3]/a/span[1]")
     public WebElement totalValue;
 
+    @FindBy(xpath = "//span[contains(.,'Deleted')]")
+    public WebElement sortedByDeleted;
+
+    @FindBy(css = "span[class='dirinfo']")
+    public WebElement numOfFolders;
+
+    @FindBy(css = "span[class='fileinfo']")
+    public WebElement numOfFiles;
+
+
+    //tr[@data-file='SampleFile.txt']//span[@class='extension']
+
+
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
                 .findElement(By.xpath("//tr[@data-file='"+fileName+"']"))
                 .getAttribute("data-file");
+    }
+
+    public void creatNewFolder(){
+        BrowserUtils.waitForPageToLoad(10);
+        plusIcon.click();
+        newFolder.click();
+    }
+
+    public String getFolderName(String folder) {
+        return Driver.get()
+                .findElement(By.xpath("//span[contains(text(),'"+folder+"')]"))
+                .getText();
     }
 
     public void clickThreeDot(String folderName){
@@ -90,13 +117,55 @@ public class FilesPage extends BasePage{
         }
     }
 
-
     public void clickTargetFolder(String folderName){  //*[@data-entryname='MSTargetFolder']
         Driver.get().findElement(By.xpath("//*[@data-entryname='"+folderName+"']")).click();
     }
 
     public void folderInFileList(String folderName){
         Driver.get().findElement(By.xpath("//tr[@data-file='"+folderName+"']")).click();
+    }
+
+    public String createFakeFolderName(){
+        Faker faker= new Faker();
+        return faker.animal().name();
+    }
+
+    public void deleteFolderToReuse(String folder){
+        clickThreeDot(folder);
+        BrowserUtils.waitFor(2);
+        actions("Delete folder");
+    }
+
+    public int sumOfFolderInList(){
+        int folderNumber=0;
+        int totalNumber= listOfFiles.size();
+
+        for(int i=0; i<totalNumber;i++){
+            if(!listOfFiles.get(i).getAttribute("data-file").contains("."))
+                folderNumber++;
+        }
+        return folderNumber;
+    }
+
+    public int sumOfFilesInList(){
+        int filesNumber=0;
+        int totalNumber= listOfFiles.size();
+
+        for(int i=0; i<totalNumber;i++){
+            if(listOfFiles.get(i).getAttribute("data-file").contains("."))
+                filesNumber++;
+        }
+        return filesNumber;
+    }
+
+    public int sumOfFoldersBottomOfPage(){
+        String[] folder= numOfFolders.getText().split(" ");
+        return Integer.parseInt(folder[0]);
+    }
+
+    public int sumOfFilesBottomOfPage(){
+        String[] files= numOfFiles.getText().split(" ");
+        return Integer.parseInt(files[0]);
     }
 
 
