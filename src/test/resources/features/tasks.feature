@@ -10,6 +10,11 @@ Feature: Tasks Functionality
     When the user navigates to "tasks" module
     Then the user see the "Add List…" with a plus icon
     When the user click on the Add List… to create a new list of tasks
+
+
+  Scenario:User can create a new task
+    When the user navigates to "tasks" module
+    When the user click on the Add List… to create a new list of tasks
     And the user enters a "Book Lists" task and save it with a checkmark icon
     And the user click on the Book Lists to create a new task
     And the user can create a new task inside the Books Lists with an enter key
