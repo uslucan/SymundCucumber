@@ -6,6 +6,7 @@ import com.symund.pages.TasksPage;
 import com.symund.utilities.BrowserUtils;
 import com.symund.utilities.Driver;
 import io.cucumber.cucumberexpressions.Group;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;

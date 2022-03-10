@@ -22,6 +22,7 @@ public class Files_Melek_StepDefs {
     @When("user click the plus dropdown icon")
     public void user_click_the_plus_dropdown_icon() {
         BrowserUtils.waitForPageToLoad(10);
+        page.NameBtn.click();
         page.plusIcon.click();
     }
 
@@ -61,7 +62,6 @@ public class Files_Melek_StepDefs {
 
     @When("the user clicks the three dot menu next to the {string}")
     public void theUserClicksTheThreeDotMenuNextToThe(String folderName) {
-       // jse.executeScript("window.scrollBy(0,250)", "");
         BrowserUtils.waitFor(2);
         page.clickThreeDot(folderName);
     }
@@ -143,17 +143,13 @@ public class Files_Melek_StepDefs {
 
     @When("user roll down list table bottom of the Files page")
     public void user_roll_down_list_table_bottom_of_the_Files_page() {
-
-        
-
+        jse.executeScript("arguments[0].scrollIntoView();", page.numOfFolders);
     }
 
     @Then("user should see total number of folders and files")
     public void user_should_see_total_number_of_folders_and_files() {
-        ((JavascriptExecutor) Driver.get()).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        String actualFoldersCount= page.countOfFolders.getText();
-        String actualFilesCount= page.countOfFiles.getText();
-
+       Assert.assertEquals(page.sumOfFolderInList(),page.sumOfFoldersBottomOfPage());
+       Assert.assertEquals(page.sumOfFilesInList(),page.sumOfFilesBottomOfPage());
     }
 
 
