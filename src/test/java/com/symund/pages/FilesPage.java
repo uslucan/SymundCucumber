@@ -71,9 +71,15 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "//span[contains(.,'Deleted')]")
     public WebElement sortedByDeleted;
 
+    @FindBy(css = "span[class='dirinfo']")
+    public WebElement countOfFolders;
+
+    @FindBy(css = "span[class='fileinfo']")
+    public WebElement countOfFiles;
+
+
     //tr[@data-file='SampleFile.txt']//span[@class='extension']
-    //    span[class='dirinfo']  get text: count of folder
-    //    span[class='fileinfo']  get text: count of files
+
 
     public String getFileName(String fileName) {  //  Sprint4_SampleFile.txt
         return Driver.get()
