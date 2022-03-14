@@ -7,10 +7,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProfilePage extends BasePage{
 
-    @FindBy(xpath = "//label[@*='displayname']")
+    @FindBy(xpath = "//input[@id='displayname']")
     public WebElement fullName;
 
-    @FindBy(xpath = "//label[@*='email']")
+    @FindBy(xpath = "//input[@name='email']")
     public WebElement email;
     
     @FindBy(xpath = "//label[@*='phone']")
@@ -27,6 +27,9 @@ public class ProfilePage extends BasePage{
 
     @FindBy(xpath = "//span[@class='icon icon-link']")
     public WebElement publishedPhone;
+
+    @FindBy(xpath = "//*[@id=\"phoneform\"]/h3/div")
+    public WebElement phoneprivacy;
 
 //    @FindBy(xpath = "//span[@class='menuitem-text-detail'][1]")
 //    public WebElement privatePhone;
