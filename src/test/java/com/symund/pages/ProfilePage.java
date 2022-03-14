@@ -7,20 +7,32 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProfilePage extends BasePage{
 
-    @FindBy(xpath = "//label[@*='displayname']")
+    @FindBy(xpath = "//input[@id='displayname']")
     public WebElement fullName;
 
-    @FindBy(xpath = "//label[@*='email']")
+    @FindBy(xpath = "//input[@name='email']")
     public WebElement email;
     
     @FindBy(xpath = "//label[@*='phone']")
     public WebElement phoneNum;
 
-    @FindBy(xpath = "//span[@class='icon-federation-menu icon-link']")
-    public WebElement phoneNumPrivacy;
-
-    @FindBy(xpath = "//span[@class='menuitem-text-detail'][1]")
+    @FindBy(xpath = "//span[@class='icon icon-phone']")
     public WebElement privatePhone;
+
+    @FindBy(xpath = "//span[@class='icon icon-password']")
+    public WebElement localPhone;
+
+    @FindBy(xpath = "//span[@class='icon icon-contacts-dark']")
+    public WebElement federatedPhone;
+
+    @FindBy(xpath = "//span[@class='icon icon-link']")
+    public WebElement publishedPhone;
+
+    @FindBy(xpath = "//*[@id=\"phoneform\"]/h3/div")
+    public WebElement phoneprivacy;
+
+//    @FindBy(xpath = "//span[@class='menuitem-text-detail'][1]")
+//    public WebElement privatePhone;
 
     @FindBy(xpath = "//div[@style='display: none;']")
     public WebElement checkPrivate;
@@ -30,6 +42,9 @@ public class ProfilePage extends BasePage{
 
     @FindBy(xpath = "//div[@class='avatardiv avatardiv-shown']")
     public WebElement avatarIcon;
+
+    @FindBy(xpath = "//input[@id='oc-dialog-0-content-input']")
+    public WebElement authentication;
 
     public void navigateToSettings(){
         BrowserUtils.waitForClickablility(By.xpath("//li[@*='settings']"),10).click();
